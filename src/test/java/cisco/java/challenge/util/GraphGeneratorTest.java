@@ -2,15 +2,8 @@ package cisco.java.challenge.util;
 
 import static org.junit.Assert.*;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-
 import org.junit.Test;
 
-import cisco.java.challenge.GNode;
 import cisco.java.challenge.impl.DFSTraversal;
 import cisco.java.challenge.impl.Node;
 
@@ -36,10 +29,7 @@ public class GraphGeneratorTest {
 		}
 		
 		DFSTraversal dfs = new DFSTraversal();
-		for (Node n : vertices) {
-			dfs.walkGraph(n);
-		}
-		
+		assertTrue(dfs.walkGraph(vertices[0]).size() == nodes);
 	}
 
 }

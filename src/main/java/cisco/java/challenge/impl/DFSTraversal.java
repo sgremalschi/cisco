@@ -97,6 +97,14 @@ public class DFSTraversal implements Traversal {
 		path.pop();
 	}
 	
+	/**
+	 * Finds all existing paths in a graph from source to target nodes
+	 * 
+	 * @param	source node
+	 * @param	target node
+	 * 
+	 * @return	list of all existing paths from source to target nodes
+	 */
 	public ArrayList<ArrayList<GNode>> paths(GNode s, GNode t) {
 		visited.clear();
 		path.clear();
@@ -106,14 +114,21 @@ public class DFSTraversal implements Traversal {
 		return paths;
 	}
 	
-	private void enumerate(GNode v, GNode t) {
-		path.push(v);
-		visited.add(v);
+	/**
+	 * Helper method to recursively enumerate all paths 
+	 * from source to target vertices
+	 * 
+	 * @param v
+	 * @param t
+	 */
+	private void enumerate(GNode s, GNode t) {
+		path.push(s);
+		visited.add(s);
 		
-		if (v.equals(t)) {
+		if (s.equals(t)) {
 			paths.add(new ArrayList<>(path));
 		} else {
-			for (GNode n : v.getChildren()) {
+			for (GNode n : s.getChildren()) {
 				if (!visited.contains(n)) {
 					enumerate(n, t);
 				}
@@ -121,7 +136,7 @@ public class DFSTraversal implements Traversal {
 		}
 		
 		path.pop();
-		visited.remove(v);
+		visited.remove(s);
 	}
 	
 }
