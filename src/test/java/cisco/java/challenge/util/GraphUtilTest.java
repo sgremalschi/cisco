@@ -9,6 +9,7 @@ import java.util.HashSet;
 import org.junit.Test;
 
 import cisco.java.challenge.GNode;
+import cisco.java.challenge.impl.DFSTraversal;
 import cisco.java.challenge.impl.Node;
 
 public class GraphUtilTest {
@@ -91,6 +92,23 @@ public class GraphUtilTest {
 		
 		assertTrue(a == GraphUtils.get(a, "A"));
 		assertTrue(d == GraphUtils.get(a, "D"));
+	}
+	
+	@Test
+	public void testListGraph() {
+		GNode root = GraphUtils.loadGraph("src/test/resources/graph2.txt", "1");
+		DFSTraversal dfs = new DFSTraversal();
+		ArrayList<GNode> path = dfs.walkGraph(root);
+		assertNotNull(path);
+		GraphUtils.print(path);
+		
+		ArrayList<ArrayList<GNode>> paths = dfs.paths(root);
+		assertNotNull(paths);
+		GraphUtils.printPaths(paths);
+		
+		paths = dfs.paths(root, GraphUtils.get(root, "6"));
+		assertNotNull(paths);
+		GraphUtils.printPaths(paths);
 	}
 
 }
