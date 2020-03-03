@@ -1,6 +1,7 @@
 package cisco.java.challenge.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.Stack;
@@ -59,84 +60,44 @@ public class DFSTraversal implements Traversal {
 
 		return new ArrayList<GNode>(visited);
 	}
-
+	
 	/**
-	 * Finds all existing paths in a tree from root node to the leafs
+	 * Finds all unique longest paths from start node
 	 * 
-	 * @param	node	root node
-	 * @return			list of all existing paths from root to leafs in a tree
+	 * @param	node	start node
+	 * @return			list of all unique longest paths from start node
 	 */
 	public ArrayList<ArrayList<GNode>> paths(GNode node) {
-		visited.clear();
-		path.clear();
-		paths.clear();
+		Set<ArrayList<GNode>> result = new HashSet<>();
+		if (null == node) {
+			return new ArrayList<ArrayList<GNode>>(result);
+		}
 		
-		findAllPaths(node);
-		return paths;
-	}
-	
-	/**
-	 * Finds all paths from root to leaves in a tree
-	 * For large graphs more memory will be required
-	 * 
-	 * @param node root note of a tree
-	 */
-	private void findAllPaths(GNode node) {
-		visited.add(node);
+		Stack<Stack<GNode>> paths = new Stack<>();
+		Stack<GNode> path = new Stack<GNode>();
 		path.push(node);
-
-		if (node.getChildren().length == 0) {
-			paths.add(new ArrayList<GNode>(path));
-		} else {
-			for (GNode child : node.getChildren()) {
-				if (!visited.contains(child)) {
-					findAllPaths(child);
+		paths.push(path);
+		
+		while (!paths.isEmpty()) {
+			boolean extendedPath = false;
+			Stack<GNode> current = paths.pop();
+			GNode last = current.peek();
+			
+			for (GNode child : last.getChildren()) {
+				if (!current.contains(child)) {
+					Stack<GNode> newPath = new Stack<>();
+					newPath.addAll(current);
+					newPath.push(child);
+					paths.push(newPath);
+					extendedPath = true;
 				}
 			}
-		}
-		path.pop();
-	}
-	
-	/**
-	 * Finds all existing paths in a graph from source to target nodes
-	 * 
-	 * @param	source node
-	 * @param	target node
-	 * 
-	 * @return	list of all existing paths from source to target nodes
-	 */
-	public ArrayList<ArrayList<GNode>> paths(GNode s, GNode t) {
-		visited.clear();
-		path.clear();
-		paths.clear();
-		
-		enumerate(s, t);
-		return paths;
-	}
-	
-	/**
-	 * Helper method to recursively enumerate all paths 
-	 * from source to target vertices
-	 * 
-	 * @param v
-	 * @param t
-	 */
-	private void enumerate(GNode s, GNode t) {
-		path.push(s);
-		visited.add(s);
-		
-		if (s.equals(t)) {
-			paths.add(new ArrayList<>(path));
-		} else {
-			for (GNode n : s.getChildren()) {
-				if (!visited.contains(n)) {
-					enumerate(n, t);
-				}
+			
+			if (!extendedPath) {
+				result.add(new ArrayList<GNode>(current));
 			}
 		}
 		
-		path.pop();
-		visited.remove(s);
+		return new ArrayList<ArrayList<GNode>>(result);
 	}
-	
 }

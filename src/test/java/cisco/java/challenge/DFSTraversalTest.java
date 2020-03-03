@@ -74,18 +74,40 @@ public class DFSTraversalTest {
 	}
 	
 	@Test
+	public void testAllPaths() {
+		// Input is a tree
+		GNode a = GraphUtils.loadGraph("src/test/resources/tree.txt", "A");
+		DFSTraversal dfs = new DFSTraversal();
+		ArrayList<ArrayList<GNode>> paths = dfs.paths(a);
+		GraphUtils.printPaths(paths);
+		
+		// Input is a clique
+		a = GraphUtils.loadGraph("src/test/resources/clique.txt", "A");
+		paths = dfs.paths(a);
+		GraphUtils.printPaths(paths);
+		
+		// Input is a diamond
+		a = GraphUtils.loadGraph("src/test/resources/diamond.txt", "A");
+		paths = dfs.paths(a);
+		GraphUtils.printPaths(paths);
+		
+		// Input is a linked list
+		a = GraphUtils.loadGraph("src/test/resources/list.txt", "1");
+		paths = dfs.paths(a);
+		GraphUtils.printPaths(paths);
+		
+		// Input is a double linked list
+		a = GraphUtils.loadGraph("src/test/resources/double-linked-list.txt", "1");
+		paths = dfs.paths(a);
+		GraphUtils.printPaths(paths);
+	}
+	
+	@Test
 	public void testDFSAllPaths() {
 		GNode a = GraphUtils.loadGraph("src/test/resources/graph1.txt", "A");
 		DFSTraversal traversal = new DFSTraversal();
 		ArrayList<ArrayList<GNode>> paths = traversal.paths(a);
 
-		assertNotNull(paths);
-		GraphUtils.printPaths(paths);
-		
-		a = GraphUtils.loadGraph("src/test/resources/clique_4.txt", "A");
-		assertTrue(GraphUtils.hasCycle(a, new HashSet<GNode>()));
-		paths = traversal.paths(a, GraphUtils.get(a, "D"));
-		
 		assertNotNull(paths);
 		GraphUtils.printPaths(paths);
 	}

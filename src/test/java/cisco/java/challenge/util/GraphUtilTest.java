@@ -29,7 +29,7 @@ public class GraphUtilTest {
 	
 	@Test
 	public void testGraphUtilInitialization() {
-		GNode root = GraphUtils.loadGraph("src/test/resources/graph1.txt", "A");
+		GNode root = GraphUtils.loadGraph("src/test/resources/tree.txt", "A");
 		assertNotNull(root);
 	}
 	
@@ -103,10 +103,6 @@ public class GraphUtilTest {
 		GraphUtils.print(path);
 		
 		ArrayList<ArrayList<GNode>> paths = dfs.paths(root);
-		assertNotNull(paths);
-		GraphUtils.printPaths(paths);
-		
-		paths = dfs.paths(root, GraphUtils.get(root, "6"));
 		assertNotNull(paths);
 		GraphUtils.printPaths(paths);
 	}
