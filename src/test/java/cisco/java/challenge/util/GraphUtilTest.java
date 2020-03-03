@@ -24,7 +24,7 @@ public class GraphUtilTest {
 	
 	@Test
 	public void testGraphUtilsFileNotFound() {
-		assertTrue(null == GraphUtils.loadGraph("/not/existing/path/file.txt", "A"));
+		 GraphUtils.loadGraph("/non/existing/path/file.txt", "A");
 	}
 	
 	@Test

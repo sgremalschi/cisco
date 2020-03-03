@@ -18,7 +18,7 @@ public class GraphUtils {
 	private GraphUtils() {
 	}
 
-	private static HashMap<String, Node> loadVertices(String fileUrl) {
+	public static HashMap<String, Node> loadVertices(String fileUrl) {
 		HashMap<String, Node> vertices = new HashMap<>();
 
 		File f = new File(fileUrl);
@@ -63,8 +63,7 @@ public class GraphUtils {
 
 	public static GNode loadGraph(String fileUrl, String root) {
 		if (Strings.isNullOrEmpty(fileUrl) || Strings.isNullOrEmpty(root)) {
-			throw new NullPointerException(
-					"Input file URL and root cannot be null");
+			throw new NullPointerException("Input file URL and root cannot be null");
 		}
 
 		HashMap<String, Node> vertices = loadVertices(fileUrl);

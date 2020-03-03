@@ -3,8 +3,8 @@
                       https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.cisco</groupId>
-	<artifactId>graph</artifactId>
+	<groupId>cisco.java</groupId>
+	<artifactId>challenge</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<repositories>
