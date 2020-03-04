@@ -29,21 +29,21 @@ public class DFSTraversal implements Traversal {
 	 *  	from given (start) vertex.
 	 *  	
 	 *  Example:
-	 *  	Given
-	 *  		A
-	 *  		/\
-	 *  	   B--C
+	 *    Given
+	 *       A
+	 *      /\
+	 *     B--C
 	 *  		
-	 *  	walkGraph(A) returns
-	 *  		[A, C, B]
+	 *    walkGraph(A) returns
+	 *      [A, C, B]
 	 *  
-	 *  	Given
-	 *  		A
-	 *  		/
-	 *  	   B  C
+	 *    Given
+	 *       A
+	 *      /
+	 *     B  C
 	 *  	
-	 *  	walkGraph(A) returns
-	 *  		[A, B]
+	 *    walkGraph(A) returns
+	 *      [A, B]
 	 *  
 	 * Method returns a list of nodes discovered using Depth First Search iterative traversal
 	 * Note that since a stack is used, children will be discovered starting with the
@@ -86,19 +86,19 @@ public class DFSTraversal implements Traversal {
 	 * 
 	 * Example
 	 * 	
-	 * 	Given
-	 * 		A
-	 * 		|
-	 * 		B
-	 * 	   /\
-	 * 	  C  D
-	 * 	   \/
-	 * 		E
-	 * 		|
-	 * 		F
+	 * Given
+	 *    A
+	 *    |
+	 * 	  B
+	 *   /\
+	 *  C  D
+	 *   \/
+	 *    E
+	 *    |
+	 * 	  F
 	 * 
-	 * 	paths(A) returns
-	 * 		[[A,B,D,E,F],[A,B,C,E,F]]
+	 *  paths(A) returns
+	 *    [[A,B,D,E,F],[A,B,C,E,F]]
 	 * 		
 	 * Finds all unique longest paths from start vertex
 	 * 
