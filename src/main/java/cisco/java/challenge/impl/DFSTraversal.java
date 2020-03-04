@@ -89,13 +89,13 @@ public class DFSTraversal implements Traversal {
 	 * Given
 	 *    A
 	 *    |
-	 * 	  B
+	 *    B
 	 *   /\
 	 *  C  D
 	 *   \/
 	 *    E
 	 *    |
-	 * 	  F
+	 *    F
 	 * 
 	 *  paths(A) returns
 	 *    [[A,B,D,E,F],[A,B,C,E,F]]
