@@ -17,15 +17,27 @@ import com.google.common.base.Strings;
 /**
  * This class counts word occurrences in a given text file.
  * 
- * The following assumptions have been made for this implementation:
+ * Assumptions
  * 
- * 1. Input file is a text file 2. "Word" is considered any sequence of alpha
- * characters. The following regex defines delimiters: [^a-zA-Z]+ One can change
- * the definition of a word by updating this regex. 3. Words are assumed to be
- * from English vocabulary, which are around 1 million 4. Two words are
- * considered the same if they are equal in lower case. In other words, all
- * words are converted to lower case. For example: "Java" is treated the same as
- * "java" 5. Output is sorted DESC by the number of occurrences.
+ * 1. input file is a text file 
+ * 2. "Word" is considered any sequence of alpha characters. 
+ * 		The following regex defines delimiters: [^a-zA-Z]+ 
+ * 		One can change the definition of a word by updating the regex. 
+ * 3. Words are assumed to be from English vocabulary, which are around 1 million 
+ * 4. Two words are considered the same if they are equal in lower case. In other words, all
+ * 		words are converted to lower case. For example: "Java" is treated the same as
+ * 		"java" 
+ * 5. Output is sorted DESC by the number of occurrences
+ * 
+ * Main steps:
+ * 	1. Split the input into "words"
+ * 	2. Count word occurrences
+ * 		- implementation uses memory (hashmap) to count word occurrences
+ * 		- for extra large inputs with large number of distinct words,
+ * 			 one can modify implementation accordingly:
+ * 			- define and split input into a collection of "words"
+ * 			- externally sort "words"
+ * 			- traverse sorted words and count/store their occurrences
  * 
  * @author stefan
  *

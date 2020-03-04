@@ -9,7 +9,6 @@ import java.util.Stack;
 import cisco.java.challenge.GNode;
 import cisco.java.challenge.Traversal;
 
-
 /**
  * @author stefan
  *
@@ -17,21 +16,40 @@ import cisco.java.challenge.Traversal;
 public class DFSTraversal implements Traversal {
 	
 	private final Set<GNode> visited;
-	private final Stack<GNode> path;
-	private final ArrayList<ArrayList<GNode>> paths;
 	
 	public DFSTraversal() {
 		this.visited = new LinkedHashSet<>();
-		this.path = new Stack<>();
-		this.paths = new ArrayList<>();
 	}
 
 	/**
-	 * Returns a list of nodes discovered using Depth First Search iterative traversal
-	 * Note that since a stack is used, the children will be discovered starting with the
+	 * Assumptions: 
+	 *  1. input is a directed graph, i.e. nodes have outgoing edges to their children
+	 *  2. walkGraph method will only return all reachable vertices from a given vertex.
+	 *  	Not all vertices will be returned if the graph has unreachable or disconnected vertices
+	 *  	from given (start) vertex.
+	 *  	
+	 *  Example:
+	 *  	Given
+	 *  		A
+	 *  		/\
+	 *  	   B--C
+	 *  		
+	 *  	walkGraph(A) returns
+	 *  		[A, C, B]
+	 *  
+	 *  	Given
+	 *  		A
+	 *  		/
+	 *  	   B  C
+	 *  	
+	 *  	walkGraph(A) returns
+	 *  		[A, B]
+	 *  
+	 * Method returns a list of nodes discovered using Depth First Search iterative traversal
+	 * Note that since a stack is used, children will be discovered starting with the
 	 * right most.
 	 *
-	 * @param	node	start node (root for trees)
+	 * @param	node	start node
 	 * @return			list of nodes in order of discovery 
 	 */
 	public ArrayList<GNode> walkGraph(GNode node) {
@@ -62,7 +80,27 @@ public class DFSTraversal implements Traversal {
 	}
 	
 	/**
-	 * Finds all unique longest paths from start node
+	 * Assumptions:
+	 * 	1. input is a directed graph
+	 *  2. sub-paths are not returned 
+	 * 
+	 * Example
+	 * 	
+	 * 	Given
+	 * 		A
+	 * 		|
+	 * 		B
+	 * 	   /\
+	 * 	  C  D
+	 * 	   \/
+	 * 		E
+	 * 		|
+	 * 		F
+	 * 
+	 * 	paths(A) returns
+	 * 		[[A,B,D,E,F],[A,B,C,E,F]]
+	 * 		
+	 * Finds all unique longest paths from start vertex
 	 * 
 	 * @param	node	start node
 	 * @return			list of all unique longest paths from start node

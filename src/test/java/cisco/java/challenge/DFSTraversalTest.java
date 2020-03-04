@@ -104,7 +104,7 @@ public class DFSTraversalTest {
 	
 	@Test
 	public void testDFSAllPaths() {
-		GNode a = GraphUtils.loadGraph("src/test/resources/graph1.txt", "A");
+		GNode a = GraphUtils.loadGraph("src/test/resources/tree.txt", "A");
 		DFSTraversal traversal = new DFSTraversal();
 		ArrayList<ArrayList<GNode>> paths = traversal.paths(a);
 
