@@ -23,11 +23,6 @@ public class GraphUtilTest {
 	}
 	
 	@Test
-	public void testGraphUtilsFileNotFound() {
-		 GraphUtils.loadGraph("/non/existing/path/file.txt", "A");
-	}
-	
-	@Test
 	public void testGraphUtilInitialization() {
 		GNode root = GraphUtils.loadGraph("src/test/resources/tree.txt", "A");
 		assertNotNull(root);
@@ -96,7 +91,7 @@ public class GraphUtilTest {
 	
 	@Test
 	public void testListGraph() {
-		GNode root = GraphUtils.loadGraph("src/test/resources/graph2.txt", "1");
+		GNode root = GraphUtils.loadGraph("src/test/resources/clique.txt", "1");
 		DFSTraversal dfs = new DFSTraversal();
 		ArrayList<GNode> path = dfs.walkGraph(root);
 		assertNotNull(path);
